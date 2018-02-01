@@ -5,12 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Safari Hangman</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
-    
 </head>
 <body>
-    
+    <div class="container-flex">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center">Safari</h1>
+                <h1 class="text-center">HANGMAN!</h1>
+            </div>
+        </div>        
+    </div>
 
+    <div class="mainSection container mt-5">
+        <div class="row justify-content-center">
+            <div class="mainContentLeft col-4">
+                <img src="assets/images/hippo_vs_croc.jpg" alt="Hippo Biting a Croc" class="img-fluid rounded">
+            </div>
+            <div class="mainContentRight col-4">
+                <p class="text-center">PRESS ANY KEY TO GET STARTED!</p>
+                <p class="text-center">WINS:</p>
+                <p id="wins" class="text-center"></p>
+                <p class="text-center">CURRENT WORD:</p>
+                <p id="guessWord" class="text-center"></p>
+                <p class="text-center">GUESSES REMAINING:</p>
+                <p id="guesses" class="text-center"></p>
+                <p class="text-center">LETTERS ALREADY GUESSED:</p>
+                <p id="lettersGuessed" class="text-center"></p>
+            </div>
+        </div>
+    </div>
 
 
     <script src="assets/javascript/game.js"></script>

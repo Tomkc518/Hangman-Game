@@ -1,0 +1,23 @@
+body {
+    background-image: url("../images/tree_bark.png");
+}
+
+h1 {
+    color: #02ad02;
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 75px;
+    text-shadow: 6px 6px black;
+}
+
+.mainContentLeft,
+.mainContentRight {
+    border: 10px solid transparent;
+    padding: 15px;
+    border-image: url("../images/bush_border.jpg") 30 round;
+}
+
+.mainContentRight {
+    font-family: 'Bungee', cursive;
+    font-size: 20px;
+    line-height: 3;
+}
