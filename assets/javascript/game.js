@@ -23,7 +23,7 @@ var remainingLetters = displayWord.length;
 //for each letter in displayWord this adds a _ to the answerArray
 for (var i = 0; i < displayWord.length; i++) {
     answerArray[i] = "_";
-}
+};
 //reset the game so the next word is randomly choosen again and the guesses are reset.
 function resetGame() {
     displayWord = game.currentWord[Math.floor(Math.random() * game.currentWord.length)];
@@ -33,7 +33,7 @@ function resetGame() {
     answerArray = [];
     for (var i = 0; i < displayWord.length; i++) {
         answerArray[i] = "_";
-    }
+    };
     console.log(displayWord);
 };
 //dispays the information on the screen as soon as the page is loaded
@@ -52,42 +52,40 @@ document.onkeyup = function(event) {
                     remainingLetters--;
                 }
         }
-    }
+    };
     //if the letter is not in the word then lower the guesses and track the letter guessed
     if (answerArray.indexOf(userGuess) === -1 && letterEntered.indexOf(userGuess) === -1) {
         letterEntered.push(userGuess);
         game.guessesRemaining--;
         document.querySelector("#lettersGuessed").innerHTML = letterEntered.join(" ");
-    }
+    };
     //once all the letters have been filled in, based on the word, puts a picture of the animal up and plays its sound and resets to the next word.
     if (remainingLetters === 0 && displayWord === "elephant") {
         game.wins++;
         image.src = "assets/images/elephant.jpg";
         audioElephant.play();
         resetGame();
-    }
-    if (remainingLetters === 0 && displayWord === "giraffe") {
+    } else if (remainingLetters === 0 && displayWord === "giraffe") {
         game.wins++;
         image.src = "assets/images/giraffe.jpg";
         audioGiraffe.play();
         resetGame();
-    }
-    if (remainingLetters === 0 && displayWord === "wildebeest") {
+    } else if (remainingLetters === 0 && displayWord === "wildebeest") {
         game.wins++;
         image.src = "assets/images/wildebeest.jpg";
         audioWildebeest.play();
         resetGame();
-    }
-    if (remainingLetters === 0 && displayWord === "cheetah") {
+    } else if (remainingLetters === 0 && displayWord === "cheetah") {
         game.wins++;
         image.src = "assets/images/cheetah.jpg";
         audioCheetah.play();
         resetGame();
-    }
-    if (remainingLetters === 0 && displayWord === "giantfox") {
+    } else if (remainingLetters === 0 && displayWord === "giantfox") {
         game.wins++;
         image.src = "assets/images/giantfox.jpg";
         audioFox.play();
+        resetGame();
+    } else if (game.guessesRemaining === 0) {
         resetGame();
     }
     //constantly refreshes the screen to the current changes
