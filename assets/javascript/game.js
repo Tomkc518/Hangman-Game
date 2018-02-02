@@ -11,52 +11,49 @@ var game = {
     ]
 };
 
-var displayWord = game.currentWord[Math.floor(Math.random() * game.currentWord.length)];
-
+var image = document.getElementById("mainPicture");
 var answerArray = [];
+var letterEntered = [];
+var displayWord = game.currentWord[Math.floor(Math.random() * game.currentWord.length)];
 
 for (var i = 0; i < displayWord.length; i++) {
     answerArray[i] = "_";
 }
 
-//var remainingLetters = displayWord.length;
+var remainingLetters = displayWord.length;
 
 document.querySelector("#guessWord").innerHTML = answerArray.join(" ");
 document.querySelector("#guesses").innerHTML = game.guessesRemaining;
-
-
+document.querySelector("#wins").innerHTML = game.wins;
 
 document.onkeyup = function(event) {
 
     var userGuess = event.key;
     var userGuess = userGuess.toLowerCase();
-
+    
+    if (answerArray.indexOf(userGuess) === -1) {
         for (var j = 0; j < displayWord.length; j++) {
-            if (displayWord[j] === userGuess) {
-                answerArray[j] = userGuess;
-            }
+                if (displayWord[j] === userGuess) {
+                    answerArray[j] = userGuess;
+                    remainingLetters--;
+                }
         }
+    }
+    
+    if (answerArray.indexOf(userGuess) === -1 && letterEntered.indexOf(userGuess) === -1) {
+        letterEntered.push(userGuess);
+        game.guessesRemaining--;
+        document.querySelector("#lettersGuessed").innerHTML = letterEntered.join(" ");
+    }
 
-        document.querySelector("#guessWord").innerHTML = answerArray.join(" ");
-        document.querySelector("#guesses").innerHTML = game.guessesRemaining;
+    if (remainingLetters === 0 && displayWord === "elephant") {
+        game.wins++;
+        image.src = "assets/images/elephant.jpg";
+    }
+        
+    document.querySelector("#guessWord").innerHTML = answerArray.join(" ");
+    document.querySelector("#guesses").innerHTML = game.guessesRemaining;
+    document.querySelector("#wins").innerHTML = game.wins;
 }
 
-
-
-//while (remainingLetters > 0) {
-    // Game code goes here
-
-    // Show the player their progress
-   
-    //document.querySelector("#guessWord").innerHTML = answerArray.join(" ");
-    
-    // Take input from the player
-
-    // Update answerArray and remainingLetters for every correct guess
-//}
-
-
-
 console.log(displayWord);
-//console.log(answerArray);
-//console.log(remainingLetters);
