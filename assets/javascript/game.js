@@ -1,3 +1,7 @@
+var image = document.getElementById("mainPicture");
+var answerArray = [];
+var letterEntered = [];
+
 var game = {
     wins: 0,
     guessesRemaining: 13,
@@ -11,9 +15,6 @@ var game = {
     ]
 };
 
-var image = document.getElementById("mainPicture");
-var answerArray = [];
-var letterEntered = [];
 var displayWord = game.currentWord[Math.floor(Math.random() * game.currentWord.length)];
 
 for (var i = 0; i < displayWord.length; i++) {
@@ -27,7 +28,6 @@ document.querySelector("#guesses").innerHTML = game.guessesRemaining;
 document.querySelector("#wins").innerHTML = game.wins;
 
 document.onkeyup = function(event) {
-
     var userGuess = event.key;
     var userGuess = userGuess.toLowerCase();
     
@@ -49,11 +49,14 @@ document.onkeyup = function(event) {
     if (remainingLetters === 0 && displayWord === "elephant") {
         game.wins++;
         image.src = "assets/images/elephant.jpg";
+        resetGame();
     }
-        
+
     document.querySelector("#guessWord").innerHTML = answerArray.join(" ");
     document.querySelector("#guesses").innerHTML = game.guessesRemaining;
     document.querySelector("#wins").innerHTML = game.wins;
 }
+
+
 
 console.log(displayWord);
