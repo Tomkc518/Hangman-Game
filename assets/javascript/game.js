@@ -5,7 +5,6 @@ var letterEntered = [];
 var game = {
     wins: 0,
     guessesRemaining: 13,
-    lettersGuessed: [],
     currentWord: [
         "elephant",
         "giraffe",
@@ -16,12 +15,24 @@ var game = {
 };
 
 var displayWord = game.currentWord[Math.floor(Math.random() * game.currentWord.length)];
+var remainingLetters = displayWord.length;
 
 for (var i = 0; i < displayWord.length; i++) {
     answerArray[i] = "_";
 }
 
-var remainingLetters = displayWord.length;
+function resetGame() {
+    displayWord = game.currentWord[Math.floor(Math.random() * game.currentWord.length)];
+    remainingLetters = displayWord.length;
+    game.guessesRemaining = 13;
+    letterEntered = [];
+    answerArray = [];
+    
+    for (var i = 0; i < displayWord.length; i++) {
+        answerArray[i] = "_";
+    }
+    console.log(displayWord);
+};
 
 document.querySelector("#guessWord").innerHTML = answerArray.join(" ");
 document.querySelector("#guesses").innerHTML = game.guessesRemaining;
@@ -51,12 +62,31 @@ document.onkeyup = function(event) {
         image.src = "assets/images/elephant.jpg";
         resetGame();
     }
-
+    if (remainingLetters === 0 && displayWord === "giraffe") {
+        game.wins++;
+        image.src = "assets/images/giraffe.jpg";
+        resetGame();
+    }
+    if (remainingLetters === 0 && displayWord === "wildebeest") {
+        game.wins++;
+        image.src = "assets/images/wildebeest.jpg";
+        resetGame();
+    }
+    if (remainingLetters === 0 && displayWord === "cheetah") {
+        game.wins++;
+        image.src = "assets/images/cheetah.jpg";
+        resetGame();
+    }
+    if (remainingLetters === 0 && displayWord === "giantfox") {
+        game.wins++;
+        image.src = "assets/images/giantfox.jpg";
+        resetGame();
+    }
+    
     document.querySelector("#guessWord").innerHTML = answerArray.join(" ");
+    document.querySelector("#lettersGuessed").innerHTML = letterEntered.join(" ");
     document.querySelector("#guesses").innerHTML = game.guessesRemaining;
     document.querySelector("#wins").innerHTML = game.wins;
 }
-
-
 
 console.log(displayWord);
