@@ -44,55 +44,56 @@ document.querySelector("#wins").innerHTML = game.wins;
 document.onkeyup = function(event) {
     var userGuess = event.key;
     var userGuess = userGuess.toLowerCase();
-    //if the letter hasn't been guessed already, check the guess against each letter in the array
-    if (answerArray.indexOf(userGuess) === -1) {
-        for (var j = 0; j < displayWord.length; j++) {
-                if (displayWord[j] === userGuess) {
-                    answerArray[j] = userGuess;
-                    remainingLetters--;
-                }
+    //first to check if a lowercase letter a-z was pressed
+    if (event.keyCode >= 65 && event.keyCode <= 90){
+        //if the letter hasn't been guessed already, check the guess against each letter in the array
+        if (answerArray.indexOf(userGuess) === -1) {
+            for (var j = 0; j < displayWord.length; j++) {
+                    if (displayWord[j] === userGuess) {
+                        answerArray[j] = userGuess;
+                        remainingLetters--;
+                    }
+            }
+        };
+        //if the letter is not in the word then lower the guesses and track the letter guessed
+        if (answerArray.indexOf(userGuess) === -1 && letterEntered.indexOf(userGuess) === -1) {
+            letterEntered.push(userGuess);
+            game.guessesRemaining--;
+            document.querySelector("#lettersGuessed").innerHTML = letterEntered.join(" ");
+        };
+        //once all the letters have been filled in, based on the word, puts a picture of the animal up and plays its sound and resets to the next word.
+        if (remainingLetters === 0 && displayWord === "elephant") {
+            game.wins++;
+            image.src = "assets/images/elephant.jpg";
+            audioElephant.play();
+            resetGame();
+        } else if (remainingLetters === 0 && displayWord === "giraffe") {
+            game.wins++;
+            image.src = "assets/images/giraffe.jpg";
+            audioGiraffe.play();
+            resetGame();
+        } else if (remainingLetters === 0 && displayWord === "wildebeest") {
+            game.wins++;
+            image.src = "assets/images/wildebeest.jpg";
+            audioWildebeest.play();
+            resetGame();
+        } else if (remainingLetters === 0 && displayWord === "cheetah") {
+            game.wins++;
+            image.src = "assets/images/cheetah.jpg";
+            audioCheetah.play();
+            resetGame();
+        } else if (remainingLetters === 0 && displayWord === "giantfox") {
+            game.wins++;
+            image.src = "assets/images/giantfox.jpg";
+            audioFox.play();
+            resetGame();
+        } else if (game.guessesRemaining === 0) {
+            resetGame();
         }
-    };
-    //if the letter is not in the word then lower the guesses and track the letter guessed
-    if (answerArray.indexOf(userGuess) === -1 && letterEntered.indexOf(userGuess) === -1) {
-        letterEntered.push(userGuess);
-        game.guessesRemaining--;
+        //constantly refreshes the screen to the current changes
+        document.querySelector("#guessWord").innerHTML = answerArray.join(" ");
         document.querySelector("#lettersGuessed").innerHTML = letterEntered.join(" ");
-    };
-    //once all the letters have been filled in, based on the word, puts a picture of the animal up and plays its sound and resets to the next word.
-    if (remainingLetters === 0 && displayWord === "elephant") {
-        game.wins++;
-        image.src = "assets/images/elephant.jpg";
-        audioElephant.play();
-        resetGame();
-    } else if (remainingLetters === 0 && displayWord === "giraffe") {
-        game.wins++;
-        image.src = "assets/images/giraffe.jpg";
-        audioGiraffe.play();
-        resetGame();
-    } else if (remainingLetters === 0 && displayWord === "wildebeest") {
-        game.wins++;
-        image.src = "assets/images/wildebeest.jpg";
-        audioWildebeest.play();
-        resetGame();
-    } else if (remainingLetters === 0 && displayWord === "cheetah") {
-        game.wins++;
-        image.src = "assets/images/cheetah.jpg";
-        audioCheetah.play();
-        resetGame();
-    } else if (remainingLetters === 0 && displayWord === "giantfox") {
-        game.wins++;
-        image.src = "assets/images/giantfox.jpg";
-        audioFox.play();
-        resetGame();
-    } else if (game.guessesRemaining === 0) {
-        resetGame();
+        document.querySelector("#guesses").innerHTML = game.guessesRemaining;
+        document.querySelector("#wins").innerHTML = game.wins;
     }
-    //constantly refreshes the screen to the current changes
-    document.querySelector("#guessWord").innerHTML = answerArray.join(" ");
-    document.querySelector("#lettersGuessed").innerHTML = letterEntered.join(" ");
-    document.querySelector("#guesses").innerHTML = game.guessesRemaining;
-    document.querySelector("#wins").innerHTML = game.wins;
 }
-
-console.log(displayWord);
