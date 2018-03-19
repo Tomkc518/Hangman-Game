@@ -66,34 +66,42 @@ document.onkeyup = function(event) {
             game.wins++;
             image.src = "assets/images/elephant.jpg";
             audioElephant.play();
+            document.getElementById("displayWord").innerHTML = "Your Word Was: Elephant";
             resetGame();
         } else if (remainingLetters === 0 && displayWord === "giraffe") {
             game.wins++;
             image.src = "assets/images/giraffe.jpg";
             audioGiraffe.play();
+            document.getElementById("displayWord").innerHTML = "Your Word Was: Giraffe";
             resetGame();
         } else if (remainingLetters === 0 && displayWord === "wildebeest") {
             game.wins++;
             image.src = "assets/images/wildebeest.jpg";
             audioWildebeest.play();
+            document.getElementById("displayWord").innerHTML = "Your Word Was: Wildebeest";
             resetGame();
         } else if (remainingLetters === 0 && displayWord === "cheetah") {
             game.wins++;
             image.src = "assets/images/cheetah.jpg";
             audioCheetah.play();
+            document.getElementById("displayWord").innerHTML = "Your Word Was: Cheetah";
             resetGame();
         } else if (remainingLetters === 0 && displayWord === "giantfox") {
             game.wins++;
             image.src = "assets/images/giantfox.jpg";
             audioFox.play();
+            document.getElementById("displayWord").innerHTML = "Your Word Was: GiantFox";
             resetGame();
         } else if (game.guessesRemaining === 0) {
             resetGame();
-        }
+            document.getElementById("displayWord").innerHTML = "The Word Was: " + displayWord;
+        } 
         //constantly refreshes the screen to the current changes
         document.querySelector("#guessWord").innerHTML = answerArray.join(" ");
         document.querySelector("#lettersGuessed").innerHTML = letterEntered.join(" ");
         document.querySelector("#guesses").innerHTML = game.guessesRemaining;
         document.querySelector("#wins").innerHTML = game.wins;
-    }
+    } else {
+        alert("Please Enter a Vaild A-Z choice.");
+    };
 }

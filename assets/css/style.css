@@ -16,7 +16,8 @@ h1 {
     border-image: url("../images/bush_border.jpg") 30 round;
 }
 
-.mainContentRight {
+.mainContentRight,
+#displayWord {
     font-family: 'Bungee', cursive;
     font-size: 20px;
     line-height: 2;
